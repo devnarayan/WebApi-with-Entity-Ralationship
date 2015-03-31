@@ -1,0 +1,15 @@
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\WebservicesApi.dll.config
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\WebservicesApi.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\WebservicesApi.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\EntityFramework.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\EntityFramework.SqlServer.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\EntityFramework.xml
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\EntityFramework.SqlServer.xml
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\obj\Debug\WebservicesApi.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\obj\Debug\WebservicesApi.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\AutoMapper.Net4.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\AutoMapper.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\AutoMapper.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\AutoMapper.xml
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\bin\AutoMapper.Net4.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebservicesApi\obj\Debug\WebserviceApi.Data.csprojResolveAssemblyReference.cache

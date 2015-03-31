@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestApi_DbModelStoreContainer" CdmEntityContainer="TestApi_DbEntities">
+    <EntitySetMapping Name="Studenttables">
+      <EntityTypeMapping TypeName="TestApi_DbModel.Studenttable">
+        <MappingFragment StoreEntitySet="Studenttable">
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectDetails">
+      <EntityTypeMapping TypeName="TestApi_DbModel.SubjectDetail">
+        <MappingFragment StoreEntitySet="SubjectDetail">
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjecttables">
+      <EntityTypeMapping TypeName="TestApi_DbModel.Subjecttable">
+        <MappingFragment StoreEntitySet="Subjecttable">
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

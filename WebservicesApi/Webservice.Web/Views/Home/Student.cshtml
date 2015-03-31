@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Student</h2>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/AngularController/studentjs.js"></script>
+<style type="text/css">
+    .highlight {
+        background: gray;
+    }
+
+    stgrid {
+        display: none;
+    }
+</style>
+<div>
+    <form id="checkout-form" class="smart-form" novalidate="novalidate" data-ng-app="AgileApp" data-ng-controller="AgileController">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-6" ng-init="GetstudentInfo()">
+                    <table id="dt_basic" class="table table-striped table-bordered table-hover" width="50%">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('StudentName', reverse)" style="cursor:pointer" data-class="expand"> Student Name<i class="fa fa-sort-down"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="pr in stInfo | filter : search">
+                                <td>{{$index + 1}}</td>
+                                <td><a href="" data-ng-click="GetsubjectInfo(pr.StudentId)">{{pr.StudentName}}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="subjectid" class="col-md-6 hidden">
+                    <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('SubjectName', reverse)" style="cursor:pointer" data-class="expand"> Subject Name <i class="fa fa-sort-down"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="pr in stsubjectinfo | filter : search">
+
+                                <td>{{$index + 1}}</td>
+                                <td id="{{pr.SubjectId}}" class="abchigh"><a href="" data-ng-click="AddActiveclass(pr.SubjectId,pr.StudentId)">{{pr.SubjectName}}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="hidnsubjectid" />
+                    <input type="hidden" id="hidnstudentid" />
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <input id="Add" type="button" value="Add" class="btn btn-success hidden" data-ng-click="Addsubject()" />
+                    <input id="Remove" type="button" value="Remove" class="btn btn-danger hidden" data-ng-click="RemoveRecord()" />
+                </div>
+                <div class="col-lg-4"></div>
+
+            </div>
+        </fieldset> <br />
+        <fieldset >
+            <div id="detail" class="row hidden">
+                <section class="col-md-12">
+                    <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('StudentName', reverse)" style="cursor:pointer" data-class="expand"> student Name <i class="fa fa-sort-down"></i></th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('SubjectName', reverse)" style="cursor:pointer" data-class="expand"> Subject Name <i class="fa fa-sort-down"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="pr in stinfo | filter : search">
+                                <td>{{$index + 1}}</td>
+                                <td>{{pr.StudentName}}</td>
+                                <td id="{{pr.Id}}" class="abchight"><a href="" data-ng-click="RemoverecordClass(pr.Id)">{{pr.SubjectName}}</a></td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="hiddid" />
+                </section>
+            </div>
+
+        </fieldset>
+    </form>
+</div>

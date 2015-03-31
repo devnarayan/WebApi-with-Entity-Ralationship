@@ -1,0 +1,17 @@
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\WebserviceApi.Data.Access.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\WebserviceApi.Data.Access.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\WebservicesApi.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\EntityFramework.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\WebservicesApi.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\EntityFramework.xml
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\obj\Debug\WebserviceApi.Data.Access.csprojResolveAssemblyReference.cache
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\obj\Debug\WebserviceApi.Data.Access.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\obj\Debug\WebserviceApi.Data.Access.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\AutoMapper.Net4.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\WebserviceApi.Data.Access.dll.config
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\AutoMapper.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\AutoMapper.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\AutoMapper.xml
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\AutoMapper.Net4.pdb
+D:\Projects\TestProjectAPI\WebservicesApi\WebserviceApi.Data.Access\bin\Debug\EntityFramework.SqlServer.xml

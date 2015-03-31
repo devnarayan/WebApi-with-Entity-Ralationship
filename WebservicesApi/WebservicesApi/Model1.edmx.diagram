@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d007f0e4f3249c08f4520c12a19e29b" Name="Diagram1">
+        <EntityTypeShape EntityType="TestApi_DbModel.Studenttable" Width="1.5" PointX="3.125" PointY="0.5" />
+        <EntityTypeShape EntityType="TestApi_DbModel.SubjectDetail" Width="1.5" PointX="7.625" PointY="1.875" />
+        <EntityTypeShape EntityType="TestApi_DbModel.Subjecttable" Width="1.5" PointX="5.375" PointY="3.125" />
+        <AssociationConnector Association="TestApi_DbModel.FK_SubjectDetail_Studenttable" />
+        <AssociationConnector Association="TestApi_DbModel.FK_Subjecttable_Studenttable" />
+        <AssociationConnector Association="TestApi_DbModel.FK_SubjectDetail_Subjecttable1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

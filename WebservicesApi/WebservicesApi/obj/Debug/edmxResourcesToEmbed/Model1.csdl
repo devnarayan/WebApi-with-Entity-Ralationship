@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestApi_DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TestApi_DbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Studenttables" EntityType="TestApi_DbModel.Studenttable" />
+    <EntitySet Name="SubjectDetails" EntityType="TestApi_DbModel.SubjectDetail" />
+    <EntitySet Name="Subjecttables" EntityType="TestApi_DbModel.Subjecttable" />
+    <AssociationSet Name="FK_SubjectDetail_Studenttable" Association="TestApi_DbModel.FK_SubjectDetail_Studenttable">
+      <End Role="Studenttable" EntitySet="Studenttables" />
+      <End Role="SubjectDetail" EntitySet="SubjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjecttable_Studenttable" Association="TestApi_DbModel.FK_Subjecttable_Studenttable">
+      <End Role="Studenttable" EntitySet="Studenttables" />
+      <End Role="Subjecttable" EntitySet="Subjecttables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectDetail_Subjecttable1" Association="TestApi_DbModel.FK_SubjectDetail_Subjecttable1">
+      <End Role="Subjecttable" EntitySet="Subjecttables" />
+      <End Role="SubjectDetail" EntitySet="SubjectDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Studenttable">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SubjectDetails" Relationship="TestApi_DbModel.FK_SubjectDetail_Studenttable" FromRole="Studenttable" ToRole="SubjectDetail" />
+    <NavigationProperty Name="Subjecttables" Relationship="TestApi_DbModel.FK_Subjecttable_Studenttable" FromRole="Studenttable" ToRole="Subjecttable" />
+  </EntityType>
+  <EntityType Name="SubjectDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="SubjectId" Type="Int32" />
+    <NavigationProperty Name="Studenttable" Relationship="TestApi_DbModel.FK_SubjectDetail_Studenttable" FromRole="SubjectDetail" ToRole="Studenttable" />
+    <NavigationProperty Name="Subjecttable" Relationship="TestApi_DbModel.FK_SubjectDetail_Subjecttable1" FromRole="SubjectDetail" ToRole="Subjecttable" />
+  </EntityType>
+  <EntityType Name="Subjecttable">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Studenttable" Relationship="TestApi_DbModel.FK_Subjecttable_Studenttable" FromRole="Subjecttable" ToRole="Studenttable" />
+    <NavigationProperty Name="SubjectDetails" Relationship="TestApi_DbModel.FK_SubjectDetail_Subjecttable1" FromRole="Subjecttable" ToRole="SubjectDetail" />
+  </EntityType>
+  <Association Name="FK_SubjectDetail_Studenttable">
+    <End Type="TestApi_DbModel.Studenttable" Role="Studenttable" Multiplicity="0..1" />
+    <End Type="TestApi_DbModel.SubjectDetail" Role="SubjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Studenttable">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="SubjectDetail">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjecttable_Studenttable">
+    <End Type="TestApi_DbModel.Studenttable" Role="Studenttable" Multiplicity="0..1" />
+    <End Type="TestApi_DbModel.Subjecttable" Role="Subjecttable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Studenttable">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Subjecttable">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectDetail_Subjecttable1">
+    <End Type="TestApi_DbModel.Subjecttable" Role="Subjecttable" Multiplicity="0..1" />
+    <End Type="TestApi_DbModel.SubjectDetail" Role="SubjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjecttable">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="SubjectDetail">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
