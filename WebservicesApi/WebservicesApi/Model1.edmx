@@ -4,198 +4,199 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TestApi_DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Studenttable">
-          <Key>
-            <PropertyRef Name="StudentId" />
-          </Key>
-          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StudentName" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="SubjectDetail">
+      <Schema Namespace="TestApi_DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="E1">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StudentId" Type="int" />
-          <Property Name="SubjectId" Type="int" />
+          <Property Name="E1Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Subjecttable">
+        <EntityType Name="E1_E2">
           <Key>
-            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="SubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StudentId" Type="int" />
-          <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="E1ID" Type="int" Nullable="false" />
+          <Property Name="E2ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="E2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="E1Id" Type="int" Nullable="false" />
+          <Property Name="E2Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_SubjectDetail_Studenttable">
-          <End Role="Studenttable" Type="Self.Studenttable" Multiplicity="0..1" />
-          <End Role="SubjectDetail" Type="Self.SubjectDetail" Multiplicity="*" />
+          <End Role="E1" Type="Self.E1" Multiplicity="1" />
+          <End Role="E1_E2" Type="Self.E1_E2" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Studenttable">
-              <PropertyRef Name="StudentId" />
+            <Principal Role="E1">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="SubjectDetail">
-              <PropertyRef Name="StudentId" />
+            <Dependent Role="E1_E2">
+              <PropertyRef Name="E1ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubjectDetail_Subjecttable1">
-          <End Role="Subjecttable" Type="Self.Subjecttable" Multiplicity="0..1" />
-          <End Role="SubjectDetail" Type="Self.SubjectDetail" Multiplicity="*" />
+          <End Role="E2" Type="Self.E2" Multiplicity="1" />
+          <End Role="E1_E2" Type="Self.E1_E2" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Subjecttable">
-              <PropertyRef Name="SubjectId" />
+            <Principal Role="E2">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="SubjectDetail">
-              <PropertyRef Name="SubjectId" />
+            <Dependent Role="E1_E2">
+              <PropertyRef Name="E2ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Subjecttable_Studenttable">
-          <End Role="Studenttable" Type="Self.Studenttable" Multiplicity="0..1" />
-          <End Role="Subjecttable" Type="Self.Subjecttable" Multiplicity="*" />
+          <End Role="E1" Type="Self.E1" Multiplicity="1" />
+          <End Role="E2" Type="Self.E2" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Studenttable">
-              <PropertyRef Name="StudentId" />
+            <Principal Role="E1">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Subjecttable">
-              <PropertyRef Name="StudentId" />
+            <Dependent Role="E2">
+              <PropertyRef Name="E1Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TestApi_DbModelStoreContainer">
-          <EntitySet Name="Studenttable" EntityType="Self.Studenttable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SubjectDetail" EntityType="Self.SubjectDetail" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Subjecttable" EntityType="Self.Subjecttable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="E1" EntityType="Self.E1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="E1_E2" EntityType="Self.E1_E2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="E2" EntityType="Self.E2" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_SubjectDetail_Studenttable" Association="Self.FK_SubjectDetail_Studenttable">
-            <End Role="Studenttable" EntitySet="Studenttable" />
-            <End Role="SubjectDetail" EntitySet="SubjectDetail" />
+            <End Role="E1" EntitySet="E1" />
+            <End Role="E1_E2" EntitySet="E1_E2" />
           </AssociationSet>
           <AssociationSet Name="FK_SubjectDetail_Subjecttable1" Association="Self.FK_SubjectDetail_Subjecttable1">
-            <End Role="Subjecttable" EntitySet="Subjecttable" />
-            <End Role="SubjectDetail" EntitySet="SubjectDetail" />
+            <End Role="E2" EntitySet="E2" />
+            <End Role="E1_E2" EntitySet="E1_E2" />
           </AssociationSet>
           <AssociationSet Name="FK_Subjecttable_Studenttable" Association="Self.FK_Subjecttable_Studenttable">
-            <End Role="Studenttable" EntitySet="Studenttable" />
-            <End Role="Subjecttable" EntitySet="Subjecttable" />
+            <End Role="E1" EntitySet="E1" />
+            <End Role="E2" EntitySet="E2" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TestApi_DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="TestApi_DbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Studenttables" EntityType="TestApi_DbModel.Studenttable" />
-          <EntitySet Name="SubjectDetails" EntityType="TestApi_DbModel.SubjectDetail" />
-          <EntitySet Name="Subjecttables" EntityType="TestApi_DbModel.Subjecttable" />
-          <AssociationSet Name="FK_SubjectDetail_Studenttable" Association="TestApi_DbModel.FK_SubjectDetail_Studenttable">
-            <End Role="Studenttable" EntitySet="Studenttables" />
-            <End Role="SubjectDetail" EntitySet="SubjectDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subjecttable_Studenttable" Association="TestApi_DbModel.FK_Subjecttable_Studenttable">
-            <End Role="Studenttable" EntitySet="Studenttables" />
-            <End Role="Subjecttable" EntitySet="Subjecttables" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubjectDetail_Subjecttable1" Association="TestApi_DbModel.FK_SubjectDetail_Subjecttable1">
-            <End Role="Subjecttable" EntitySet="Subjecttables" />
-            <End Role="SubjectDetail" EntitySet="SubjectDetails" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Studenttable">
-          <Key>
-            <PropertyRef Name="StudentId" />
-          </Key>
-          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SubjectDetails" Relationship="TestApi_DbModel.FK_SubjectDetail_Studenttable" FromRole="Studenttable" ToRole="SubjectDetail" />
-          <NavigationProperty Name="Subjecttables" Relationship="TestApi_DbModel.FK_Subjecttable_Studenttable" FromRole="Studenttable" ToRole="Subjecttable" />
-        </EntityType>
-        <EntityType Name="SubjectDetail">
+        <EntityType Name="E1">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="SubjectId" Type="Int32" />
-          <NavigationProperty Name="Studenttable" Relationship="TestApi_DbModel.FK_SubjectDetail_Studenttable" FromRole="SubjectDetail" ToRole="Studenttable" />
-          <NavigationProperty Name="Subjecttable" Relationship="TestApi_DbModel.FK_SubjectDetail_Subjecttable1" FromRole="SubjectDetail" ToRole="Subjecttable" />
+          <Property Name="E1Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="E1_E2" Relationship="Self.FK_SubjectDetail_Studenttable" FromRole="E1" ToRole="E1_E2" />
+          <NavigationProperty Name="E2" Relationship="Self.FK_Subjecttable_Studenttable" FromRole="E1" ToRole="E2" />
         </EntityType>
-        <EntityType Name="Subjecttable">
+        <EntityType Name="E1_E2">
           <Key>
-            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StudentId" Type="Int32" />
-          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Studenttable" Relationship="TestApi_DbModel.FK_Subjecttable_Studenttable" FromRole="Subjecttable" ToRole="Studenttable" />
-          <NavigationProperty Name="SubjectDetails" Relationship="TestApi_DbModel.FK_SubjectDetail_Subjecttable1" FromRole="Subjecttable" ToRole="SubjectDetail" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="E1ID" Type="Int32" Nullable="false" />
+          <Property Name="E2ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="E1" Relationship="Self.FK_SubjectDetail_Studenttable" FromRole="E1_E2" ToRole="E1" />
+          <NavigationProperty Name="E2" Relationship="Self.FK_SubjectDetail_Subjecttable1" FromRole="E1_E2" ToRole="E2" />
+        </EntityType>
+        <EntityType Name="E2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="E1Id" Type="Int32" Nullable="false" />
+          <Property Name="E2Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="E1" Relationship="Self.FK_Subjecttable_Studenttable" FromRole="E2" ToRole="E1" />
+          <NavigationProperty Name="E1_E2" Relationship="Self.FK_SubjectDetail_Subjecttable1" FromRole="E2" ToRole="E1_E2" />
         </EntityType>
         <Association Name="FK_SubjectDetail_Studenttable">
-          <End Type="TestApi_DbModel.Studenttable" Role="Studenttable" Multiplicity="0..1" />
-          <End Type="TestApi_DbModel.SubjectDetail" Role="SubjectDetail" Multiplicity="*" />
+          <End Role="E1" Type="Self.E1" Multiplicity="1" />
+          <End Role="E1_E2" Type="Self.E1_E2" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Studenttable">
-              <PropertyRef Name="StudentId" />
+            <Principal Role="E1">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="SubjectDetail">
-              <PropertyRef Name="StudentId" />
+            <Dependent Role="E1_E2">
+              <PropertyRef Name="E1ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Subjecttable_Studenttable">
-          <End Type="TestApi_DbModel.Studenttable" Role="Studenttable" Multiplicity="0..1" />
-          <End Type="TestApi_DbModel.Subjecttable" Role="Subjecttable" Multiplicity="*" />
+          <End Role="E1" Type="Self.E1" Multiplicity="1" />
+          <End Role="E2" Type="Self.E2" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Studenttable">
-              <PropertyRef Name="StudentId" />
+            <Principal Role="E1">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Subjecttable">
-              <PropertyRef Name="StudentId" />
+            <Dependent Role="E2">
+              <PropertyRef Name="E1Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubjectDetail_Subjecttable1">
-          <End Type="TestApi_DbModel.Subjecttable" Role="Subjecttable" Multiplicity="0..1" />
-          <End Type="TestApi_DbModel.SubjectDetail" Role="SubjectDetail" Multiplicity="*" />
+          <End Role="E2" Type="Self.E2" Multiplicity="1" />
+          <End Role="E1_E2" Type="Self.E1_E2" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Subjecttable">
-              <PropertyRef Name="SubjectId" />
+            <Principal Role="E2">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="SubjectDetail">
-              <PropertyRef Name="SubjectId" />
+            <Dependent Role="E1_E2">
+              <PropertyRef Name="E2ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="TestApi_DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="E1" EntityType="Self.E1" />
+          <EntitySet Name="E1_E2" EntityType="Self.E1_E2" />
+          <EntitySet Name="E2" EntityType="Self.E2" />
+          <AssociationSet Name="FK_SubjectDetail_Studenttable" Association="Self.FK_SubjectDetail_Studenttable">
+            <End Role="E1" EntitySet="E1" />
+            <End Role="E1_E2" EntitySet="E1_E2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subjecttable_Studenttable" Association="Self.FK_Subjecttable_Studenttable">
+            <End Role="E1" EntitySet="E1" />
+            <End Role="E2" EntitySet="E2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectDetail_Subjecttable1" Association="Self.FK_SubjectDetail_Subjecttable1">
+            <End Role="E2" EntitySet="E2" />
+            <End Role="E1_E2" EntitySet="E1_E2" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TestApi_DbModelStoreContainer" CdmEntityContainer="TestApi_DbEntities">
-          <EntitySetMapping Name="Studenttables">
-            <EntityTypeMapping TypeName="TestApi_DbModel.Studenttable">
-              <MappingFragment StoreEntitySet="Studenttable">
-                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubjectDetails">
-            <EntityTypeMapping TypeName="TestApi_DbModel.SubjectDetail">
-              <MappingFragment StoreEntitySet="SubjectDetail">
-                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <EntitySetMapping Name="E1">
+            <EntityTypeMapping TypeName="TestApi_DbModel.E1">
+              <MappingFragment StoreEntitySet="E1">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="E1Name" ColumnName="E1Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Subjecttables">
-            <EntityTypeMapping TypeName="TestApi_DbModel.Subjecttable">
-              <MappingFragment StoreEntitySet="Subjecttable">
-                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <EntitySetMapping Name="E1_E2">
+            <EntityTypeMapping TypeName="TestApi_DbModel.E1_E2">
+              <MappingFragment StoreEntitySet="E1_E2">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="E1ID" ColumnName="E1ID" />
+                <ScalarProperty Name="E2ID" ColumnName="E2ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="E2">
+            <EntityTypeMapping TypeName="TestApi_DbModel.E2">
+              <MappingFragment StoreEntitySet="E2">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="E1Id" ColumnName="E1Id" />
+                <ScalarProperty Name="E2Name" ColumnName="E2Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

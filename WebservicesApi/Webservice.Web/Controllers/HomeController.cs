@@ -16,7 +16,7 @@ namespace Webservice.Web.Controllers
         {
             return View();
         }
-        
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -36,11 +36,9 @@ namespace Webservice.Web.Controllers
         }
 
         public string GetstudentInfo()
-        
-        
         {
             StudentServices objservices = new StudentServices();
-            var stmdl= objservices.Allstudent();
+            var stmdl = objservices.Allstudent();
             return Newtonsoft.Json.JsonConvert.SerializeObject(stmdl);
         }
         public string GetsubjectInfo(int Studentid)
@@ -53,19 +51,25 @@ namespace Webservice.Web.Controllers
         public string AddSubjectInfo(int subjectId, int studentId)
         {
             StudentServices objservices = new StudentServices();
-            SubjectDetailModel objmdl=new SubjectDetailModel();
-            objmdl.StudentId=studentId;
-            objmdl.SubjectId=subjectId;
+            E1_E2Model objmdl = new E1_E2Model();
+            objmdl.E1ID = studentId;
+            objmdl.E2ID = subjectId;
             objservices.AddsubjectDetail(objmdl);
             var stmdl = objservices.Getrecord(studentId, subjectId);
-          return Newtonsoft.Json.JsonConvert.SerializeObject(stmdl);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(stmdl);
         }
         public string RemoveRecord(int Id)
         {
             StudentServices objservices = new StudentServices();
-            SubjectDetailModel objmdl=new SubjectDetailModel();
-            objmdl.Id=Id;
+           E1_E2Model objmdl = new E1_E2Model();
+            objmdl.Id = Id;
             var stmdl = objservices.DeleteRecord(objmdl);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(stmdl);
+        }
+        public string ShowRecord(int subjectId, int studentId)
+        {
+            StudentServices objservices = new StudentServices();
+            var stmdl = objservices.Getrecord(studentId, subjectId);
             return Newtonsoft.Json.JsonConvert.SerializeObject(stmdl);
         }
     }

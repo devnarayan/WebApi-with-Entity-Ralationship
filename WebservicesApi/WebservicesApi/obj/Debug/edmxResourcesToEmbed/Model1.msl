@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TestApi_DbModelStoreContainer" CdmEntityContainer="TestApi_DbEntities">
-    <EntitySetMapping Name="Studenttables">
-      <EntityTypeMapping TypeName="TestApi_DbModel.Studenttable">
-        <MappingFragment StoreEntitySet="Studenttable">
-          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SubjectDetails">
-      <EntityTypeMapping TypeName="TestApi_DbModel.SubjectDetail">
-        <MappingFragment StoreEntitySet="SubjectDetail">
-          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+    <EntitySetMapping Name="E1">
+      <EntityTypeMapping TypeName="TestApi_DbModel.E1">
+        <MappingFragment StoreEntitySet="E1">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="E1Name" ColumnName="E1Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Subjecttables">
-      <EntityTypeMapping TypeName="TestApi_DbModel.Subjecttable">
-        <MappingFragment StoreEntitySet="Subjecttable">
-          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+    <EntitySetMapping Name="E1_E2">
+      <EntityTypeMapping TypeName="TestApi_DbModel.E1_E2">
+        <MappingFragment StoreEntitySet="E1_E2">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="E1ID" ColumnName="E1ID" />
+          <ScalarProperty Name="E2ID" ColumnName="E2ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="E2">
+      <EntityTypeMapping TypeName="TestApi_DbModel.E2">
+        <MappingFragment StoreEntitySet="E2">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="E1Id" ColumnName="E1Id" />
+          <ScalarProperty Name="E2Name" ColumnName="E2Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -14,21 +14,23 @@ namespace WebserviceApi.Data.Access.Webservices
 {
     public interface IStudentService
     {
-        List<StudentModel> Allstudent();
+        List<E1Model> Allstudent();
 
     }
     public class StudentServices : IStudentService
     {
 
-        public int AddsubjectDetail(SubjectDetailModel ObjSubject)
+        public int AddsubjectDetail(E1_E2Model ObjSubject)
         {
             try
             {
                 using (TestApi_DbEntities contex = new TestApi_DbEntities())
                 {
-                    Mapper.CreateMap<SubjectDetailModel, SubjectDetail>();
-                    var stmdl = Mapper.Map<SubjectDetailModel, SubjectDetail>(ObjSubject);
-                    contex.SubjectDetails.Add(stmdl);
+
+                    Mapper.CreateMap<E1_E2Model, E1_E2>();
+                    var stmdl = Mapper.Map<E1_E2Model, E1_E2>(ObjSubject);
+                    contex.E1_E2.Add(stmdl);
+                    //contex.SubjectDetails.Add(stmdl);
                     int i = contex.SaveChanges();
                     return i;
 
@@ -43,16 +45,16 @@ namespace WebserviceApi.Data.Access.Webservices
 
         }
 
-        public List<StudentModel> Allstudent()
+        public List<E1Model> Allstudent()
         {
-            List<StudentModel> stsmdl = new List<StudentModel>();
+            List<E1Model> stsmdl = new List<E1Model>();
             using (TestApi_DbEntities contex = new TestApi_DbEntities())
             {
-                var studentsAll = contex.Studenttables.ToList();
+                var studentsAll = contex.E1.ToList();
                 foreach (var std in studentsAll)
                 {
-                    Mapper.CreateMap<Studenttable, StudentModel>();
-                    var mdlstd = Mapper.Map<Studenttable, StudentModel>(std);
+                    Mapper.CreateMap<E1, E1Model>();
+                    var mdlstd = Mapper.Map<E1, E1Model>(std);
                     stsmdl.Add(mdlstd);
 
                 }
@@ -60,16 +62,16 @@ namespace WebserviceApi.Data.Access.Webservices
             return stsmdl;
         }
 
-        public List<SubjectModel> Allstubjectbystudent(int studentid)
+        public List<E2Model> Allstubjectbystudent(int studentid)
         {
-            List<SubjectModel> stbmdl = new List<SubjectModel>();
+            List<E2Model> stbmdl = new List<E2Model>();
             using (TestApi_DbEntities contex = new TestApi_DbEntities())
             {
-                var stsAll = contex.Subjecttables.Where(e => e.StudentId == studentid).ToList();
+                var stsAll = contex.E2.Where(e => e.E1Id == studentid).ToList();
                 foreach (var std in stsAll)
                 {
-                    Mapper.CreateMap<Subjecttable, SubjectModel>();
-                    var mdlstd = Mapper.Map<Subjecttable, SubjectModel>(std);
+                    Mapper.CreateMap<E2, E2Model>();
+                    var mdlstd = Mapper.Map<E2, E2Model>(std);
                     stbmdl.Add(mdlstd);
 
                 }
@@ -77,16 +79,16 @@ namespace WebserviceApi.Data.Access.Webservices
             return stbmdl;
         }
 
-        public List<SubjectDetailModel> Getrecord(int studentid, int subjectid)
+        public List<E1_E2Model> Getrecord(int studentid, int subjectid)
         {
-           
-            List<SubjectDetailModel> stmdl = new List<SubjectDetailModel>();
+
+            List<E1_E2Model> stmdl = new List<E1_E2Model>();
             TestApi_DbEntities Contex = new TestApi_DbEntities();
-            var objEvnt = (from ep in Contex.SubjectDetails
-                           join std in Contex.Studenttables on ep.StudentId equals std.StudentId
-                           join sb in Contex.Subjecttables on ep.SubjectId equals sb.SubjectId
+            var objEvnt = (from ep in Contex.E1_E2
+                           join std in Contex.E1 on ep.E1ID equals std.Id
+                           join sb in Contex.E2 on ep.E2ID equals sb.Id
                            //join t in Contex.tbl_Title on e.TID equals t.TID
-                           where ep.StudentId == studentid 
+                           where ep.E1ID == studentid 
                            select new
                            {
                                subjectDetails = ep,
@@ -95,24 +97,24 @@ namespace WebserviceApi.Data.Access.Webservices
                            });
             foreach (var v in objEvnt)
             {
-               
-                SubjectDetailModel objsub = new SubjectDetailModel();
-                objsub.StudentName = v.student.StudentName;
-                objsub.SubjectName = v.subject.SubjectName;
+
+                E1_E2Model objsub = new E1_E2Model();
+                objsub.E1Name = v.student.E1Name;
+                objsub.E2Name = v.subject.E2Name;
                 objsub.Id = v.subjectDetails.Id;
                 stmdl.Add(objsub);
             }
             return stmdl;
         }
 
-        public int DeleteRecord(SubjectDetailModel Projsub)
+        public int DeleteRecord(E1_E2Model Projsub)
         {
             try
             {
                 using (TestApi_DbEntities context = new TestApi_DbEntities())
                 {
-                    Mapper.CreateMap<SubjectDetailModel, SubjectDetail>();
-                    var org = Mapper.Map<SubjectDetailModel, SubjectDetail>(Projsub);
+                    Mapper.CreateMap<E1_E2Model, E1_E2>();
+                    var org = Mapper.Map<E1_E2Model, E1_E2>(Projsub);
                     context.Entry(org).State = EntityState.Deleted;
                     int i = context.SaveChanges();
                     return i;

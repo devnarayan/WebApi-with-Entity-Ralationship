@@ -1,79 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="TestApi_DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Studenttable">
-    <Key>
-      <PropertyRef Name="StudentId" />
-    </Key>
-    <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StudentName" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="SubjectDetail">
+  <EntityType Name="E1">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StudentId" Type="int" />
-    <Property Name="SubjectId" Type="int" />
+    <Property Name="E1Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="Subjecttable">
+  <EntityType Name="E1_E2">
     <Key>
-      <PropertyRef Name="SubjectId" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="SubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StudentId" Type="int" />
-    <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="E1ID" Type="int" Nullable="false" />
+    <Property Name="E2ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="E2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="E1Id" Type="int" Nullable="false" />
+    <Property Name="E2Name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_SubjectDetail_Studenttable">
-    <End Role="Studenttable" Type="Self.Studenttable" Multiplicity="0..1" />
-    <End Role="SubjectDetail" Type="Self.SubjectDetail" Multiplicity="*" />
+    <End Role="E1" Type="Self.E1" Multiplicity="1" />
+    <End Role="E1_E2" Type="Self.E1_E2" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Studenttable">
-        <PropertyRef Name="StudentId" />
+      <Principal Role="E1">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="SubjectDetail">
-        <PropertyRef Name="StudentId" />
+      <Dependent Role="E1_E2">
+        <PropertyRef Name="E1ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SubjectDetail_Subjecttable1">
-    <End Role="Subjecttable" Type="Self.Subjecttable" Multiplicity="0..1" />
-    <End Role="SubjectDetail" Type="Self.SubjectDetail" Multiplicity="*" />
+    <End Role="E2" Type="Self.E2" Multiplicity="1" />
+    <End Role="E1_E2" Type="Self.E1_E2" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Subjecttable">
-        <PropertyRef Name="SubjectId" />
+      <Principal Role="E2">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="SubjectDetail">
-        <PropertyRef Name="SubjectId" />
+      <Dependent Role="E1_E2">
+        <PropertyRef Name="E2ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Subjecttable_Studenttable">
-    <End Role="Studenttable" Type="Self.Studenttable" Multiplicity="0..1" />
-    <End Role="Subjecttable" Type="Self.Subjecttable" Multiplicity="*" />
+    <End Role="E1" Type="Self.E1" Multiplicity="1" />
+    <End Role="E2" Type="Self.E2" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Studenttable">
-        <PropertyRef Name="StudentId" />
+      <Principal Role="E1">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Subjecttable">
-        <PropertyRef Name="StudentId" />
+      <Dependent Role="E2">
+        <PropertyRef Name="E1Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="TestApi_DbModelStoreContainer">
-    <EntitySet Name="Studenttable" EntityType="Self.Studenttable" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SubjectDetail" EntityType="Self.SubjectDetail" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Subjecttable" EntityType="Self.Subjecttable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="E1" EntityType="Self.E1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="E1_E2" EntityType="Self.E1_E2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="E2" EntityType="Self.E2" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_SubjectDetail_Studenttable" Association="Self.FK_SubjectDetail_Studenttable">
-      <End Role="Studenttable" EntitySet="Studenttable" />
-      <End Role="SubjectDetail" EntitySet="SubjectDetail" />
+      <End Role="E1" EntitySet="E1" />
+      <End Role="E1_E2" EntitySet="E1_E2" />
     </AssociationSet>
     <AssociationSet Name="FK_SubjectDetail_Subjecttable1" Association="Self.FK_SubjectDetail_Subjecttable1">
-      <End Role="Subjecttable" EntitySet="Subjecttable" />
-      <End Role="SubjectDetail" EntitySet="SubjectDetail" />
+      <End Role="E2" EntitySet="E2" />
+      <End Role="E1_E2" EntitySet="E1_E2" />
     </AssociationSet>
     <AssociationSet Name="FK_Subjecttable_Studenttable" Association="Self.FK_Subjecttable_Studenttable">
-      <End Role="Studenttable" EntitySet="Studenttable" />
-      <End Role="Subjecttable" EntitySet="Subjecttable" />
+      <End Role="E1" EntitySet="E1" />
+      <End Role="E2" EntitySet="E2" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

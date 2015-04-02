@@ -5,9 +5,9 @@ using System.Web;
 
 namespace WebserviceApi.DataModel
 {
-    public class StudentModel
+    public class E1Model
     {
-        public int StudentId { get; set; }
-        public string StudentName { get; set; }
+        public int Id { get; set; }
+        public string E1Name { get; set; }
     }
 }

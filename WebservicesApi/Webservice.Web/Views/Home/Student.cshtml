@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Student</h2>
+<h2>ERT Test</h2>
 <script src="~/Scripts/angular.js"></script>
 <script src="~/AngularController/studentjs.js"></script>
 <style type="text/css">
@@ -24,13 +24,13 @@
                         <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th data-ng-click="reverse=!reverse;orderEventList('StudentName', reverse)" style="cursor:pointer" data-class="expand"> Student Name<i class="fa fa-sort-down"></i></th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('E1Name', reverse)" style="cursor:pointer" data-class="expand"> E1 Name<i class="fa fa-sort-down"></i></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="pr in stInfo | filter : search">
                                 <td>{{$index + 1}}</td>
-                                <td><a href="" data-ng-click="GetsubjectInfo(pr.StudentId)">{{pr.StudentName}}</a></td>
+                                <td><a href="" data-ng-click="GetsubjectInfo(pr.Id)">{{pr.E1Name}}</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -40,14 +40,14 @@
                         <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th data-ng-click="reverse=!reverse;orderEventList('SubjectName', reverse)" style="cursor:pointer" data-class="expand"> Subject Name <i class="fa fa-sort-down"></i></th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('E2Name', reverse)" style="cursor:pointer" data-class="expand"> E2 Name <i class="fa fa-sort-down"></i></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="pr in stsubjectinfo | filter : search">
 
                                 <td>{{$index + 1}}</td>
-                                <td id="{{pr.SubjectId}}" class="abchigh"><a href="" data-ng-click="AddActiveclass(pr.SubjectId,pr.StudentId)">{{pr.SubjectName}}</a></td>
+                                <td id="{{pr.Id}}" class="abchigh"><a href="" data-ng-click="AddActiveclass(pr.Id,pr.E1Id)">{{pr.E2Name}}</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -56,8 +56,8 @@
                 </div>
             </div>
         </fieldset>
-        <fieldset>
-            <div class="row">
+        <fieldset >
+            <div class="row ">
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4">
                     <input id="Add" type="button" value="Add" class="btn btn-success hidden" data-ng-click="Addsubject()" />
@@ -74,15 +74,15 @@
                         <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th data-ng-click="reverse=!reverse;orderEventList('StudentName', reverse)" style="cursor:pointer" data-class="expand"> student Name <i class="fa fa-sort-down"></i></th>
-                                <th data-ng-click="reverse=!reverse;orderEventList('SubjectName', reverse)" style="cursor:pointer" data-class="expand"> Subject Name <i class="fa fa-sort-down"></i></th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('E1Name', reverse)" style="cursor:pointer" data-class="expand"> E1 Name <i class="fa fa-sort-down"></i></th>
+                                <th data-ng-click="reverse=!reverse;orderEventList('E2Name', reverse)" style="cursor:pointer" data-class="expand"> E2 Name <i class="fa fa-sort-down"></i></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr data-ng-repeat="pr in stinfo | filter : search">
                                 <td>{{$index + 1}}</td>
-                                <td>{{pr.StudentName}}</td>
-                                <td id="{{pr.Id}}" class="abchight"><a href="" data-ng-click="RemoverecordClass(pr.Id)">{{pr.SubjectName}}</a></td>
+                                <td>{{pr.E1Name}}</td>
+                                <td id="{{pr.Id}}" class="abchight"><a href="" data-ng-click="RemoverecordClass(pr.Id)">{{pr.E2Name}}</a></td>
 
                             </tr>
 

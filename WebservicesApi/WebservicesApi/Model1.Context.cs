@@ -25,8 +25,8 @@ namespace WebservicesApi
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Studenttable> Studenttables { get; set; }
-        public virtual DbSet<SubjectDetail> SubjectDetails { get; set; }
-        public virtual DbSet<Subjecttable> Subjecttables { get; set; }
+        public virtual DbSet<E1> E1 { get; set; }
+        public virtual DbSet<E1_E2> E1_E2 { get; set; }
+        public virtual DbSet<E2> E2 { get; set; }
     }
 }

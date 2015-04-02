@@ -66,6 +66,25 @@ myApp.controller('AgileController', function ($http, $scope) {
         $("#Remove").removeClass("hidden");
 
     }
+    $scope.showRecord = function () {
+        var subjectId = $("#hidnsubjectid").val();
+        var studentId = $("#hidnstudentid").val();       
+        $http({
+            method: 'Get',
+            url: '/Home/ShowRecord',
+            params: { subjectId: subjectId, studentId: studentId }
+        })
+        .success(function (result) {
+            $scope.stinfo = result;
+            console.log(result);
+            //alert('Record Inserted success');
+            //$("#detail").removeClass("hidden");
+
+        }).error(function (err) {
+            console.log(err);
+        });
+
+    }
     $scope.RemoveRecord = function () {
         var Subid = $("#hiddid").val();      
         $http({
@@ -75,10 +94,9 @@ myApp.controller('AgileController', function ($http, $scope) {
         })
         .success(function (result) {       
            console.log(result);
-            alert('Record deleted success');           
-            $('.abchight').removeClass('highlight');
-            $('#' + Id).addClass('stgrid');
-            Addsubject();        
+            alert('Record deleted success');         
+           
+            $scope.showRecord();
         }).error(function (err) {
             console.log(err);
         });

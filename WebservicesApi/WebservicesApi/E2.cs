@@ -12,13 +12,18 @@ namespace WebservicesApi
     using System;
     using System.Collections.Generic;
     
-    public partial class SubjectDetail
+    public partial class E2
     {
-        public int Id { get; set; }
-        public Nullable<int> StudentId { get; set; }
-        public Nullable<int> SubjectId { get; set; }
+        public E2()
+        {
+            this.E1_E2 = new HashSet<E1_E2>();
+        }
     
-        public virtual Studenttable Studenttable { get; set; }
-        public virtual Subjecttable Subjecttable { get; set; }
+        public int Id { get; set; }
+        public int E1Id { get; set; }
+        public string E2Name { get; set; }
+    
+        public virtual E1 E1 { get; set; }
+        public virtual ICollection<E1_E2> E1_E2 { get; set; }
     }
 }
